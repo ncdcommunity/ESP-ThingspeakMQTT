@@ -1,6 +1,6 @@
 # SHT 25 MQTT  ThingSpeak Tutorial
 
-It's an ESP8266 project to measure Temperature and Humidity using SHT31 and Adafruit Huzzah ESP8266. It provides us Real Time    Temperature and Humidity data and hourly analytics. The data is sent using MQTT thing speak API and later we are providing an email notification to the user whenever temperature reaches assigned threshold using IFTTT protocol
+It's an ESP8266 project to measure Temperature and Humidity using SHT25 and Adafruit Huzzah ESP8266. It provides us Real Time    Temperature and Humidity data and hourly analytics. The data is sent using MQTT thing speak API and later we are providing an email notification to the user whenever temperature reaches assigned threshold using IFTTT protocol
 
 ## Features 
 
@@ -68,7 +68,7 @@ Before proceding to our mesh we need to save the user credentials. For this purp
  
  - After 60 sec Device will automaticaly disconnect from AP 
  
- - Next time when you turn on the device, The user doesn't have to follow this procedure, The device will automaticaly fetch the user      credentials from EEPROM and continue with getting the sensor readings from mesh and posting it to cloud
+ - Next time when you turn on the device, The user doesn't have to follow this procedure, The device will automaticaly fetch the user      credentials from EEPROM and continue with getting the sensor readings from I2C Interface and posting it to cloud
 
 
 ## Profile
