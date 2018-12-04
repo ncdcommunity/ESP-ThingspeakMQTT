@@ -44,13 +44,13 @@ Before proceding to our mesh we need to save the user credentials. For this purp
  - Connect to the AP ESPuser, This is listed in your available wifi network list. Connect to this AP and enter password 24041990 
  - Once it gets connected, Go to your browser enter the the IP 192.168.1.4. 
 
-    ![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture7.PNG "Title")
+    ![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture7.PNG "ESP8266 WebForm")
   
  - Enter the ssid and password of your local WiFi in the input fields and enter SUBMIT
  
  - These credential will be saved in EEPROM
  
-    ![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture8.PNG "Title")
+    ![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture8.PNG "Local Wifi Connection")
  
  
  - After 60 sec Device will automaticaly disconnect from AP 
@@ -60,17 +60,17 @@ Before proceding to our mesh we need to save the user credentials. For this purp
 
 ## Profile
 
-![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture1.PNG "Title")
+![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture1.PNG "Task1 - Reading values from SHT25")
 
-![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture2.PNG "Title")
+![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture2.PNG "Task2 - Publishing values to ThingSpeak")
 
-![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture3.PNG "Title")
+![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture3.PNG "ThingSpeak TempC graph")
 
-![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture4.PNG "Title")
+![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture4.PNG "ThingSpeak TempF graph")
 
-![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture6.PNG "Title")
+![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture6.PNG "ThingSpeak Humidity graph")
 
-![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture9.PNG "Title")
+![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture9.PNG "IFTTT email Notification")
 
 
 ## Limitations
