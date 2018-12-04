@@ -57,13 +57,13 @@ Before proceding to our mesh we need to save the user credentials. For this purp
  - Connect to the AP ESPuser, This is listed in your available wifi network list. Connect to this AP and enter password 24041990 
  - Once it gets connected, Go to your browser enter the the IP 192.168.1.4. 
 
-    ![alt text](https://github.com/ncdcommunity/ESP-ThingspeakMQTT/blob/master/Capture10.png "ESP8266 WebForm")
+    ![alt text](https://github.com/ncdcommunity/ESP-ThingspeakMQTT/blob/master/WebPage.png  "ESP8266 WebForm")
   
  - Enter the ssid and password of your local WiFi in the input fields and enter SUBMIT
  
  - These credential will be saved in EEPROM
  
-    ![alt text](https://github.com/ncdcommunity/ESP-ThingspeakMQTT/blob/master/WebPage.png "Local Wifi Connection")
+    ![alt text](https://github.com/ncdcommunity/ESP-ThingspeakMQTT/blob/master/Connction.PNG "Local Wifi Connection")
  
  
  - After 60 sec Device will automaticaly disconnect from AP 
