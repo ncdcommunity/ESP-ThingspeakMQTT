@@ -20,8 +20,9 @@ It's an ESP8266 project to measure Temperature and Humidity using SHT31 and Adaf
   - [I2C cable](https://store.ncd.io/product/i%C2%B2c-cable/)
  
 
-##Software Specification
- - Arduino IDE
+## Software Specification
+ - Arduino IDE 
+ - IFTTT
  - Thing Speak MQTT API 
 
 ## How it works?
