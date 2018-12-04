@@ -5,6 +5,8 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 #include <EEPROM.h>
+//for SPIFFS
+#include "FS.h"
 
 #define Addr 0x40
 
@@ -27,8 +29,9 @@ WiFiClient wifiClient;
  
 
 //--------- AP parameters------------//
+
 const char *ssidAP = "ESPUser";
-const char *passAP = "12345";
+const char *passAP = "24041990";
 
 //--------- Temp parameters------------//
  volatile float tempC;
@@ -63,31 +66,6 @@ void taskI2CCallback();
 void taskI2CDisable();
 void taskWiFiCallback();
 void taskWiFiDisable();
-
-//---------HTML_PAGE------------//
-String HTML_PAGE = 
-"<!DOCTYPE HTML>"
-"<html>"
-  "<head>"
-"<meta content=\"text/html; charset=ISO-8859-1\""
-" http-equiv=\"content-type\">"
-"<meta name = \"viewport\" content = \"width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable=0\">"
-"<title>ESP8266 Web Form Demo</title>"
-"<style>"
-"\"body { background-color: #808080; font-family: Arial, Helvetica, Sans-Serif; Color: #000000; }\""
-"</style>"
-"</head>"
-"<body>"
-"<h1>ESP8266 Web Form Demo</h1>"
-"<FORM action=\"/\" method=\"post\">"
-"<P>"
-"<label>ssid:&nbsp;</label>"
-"<input maxlength=\"30\" name=\"ssid\"><br>"
-"<label>Password:&nbsp;</label><input maxlength=\"30\" name=\"Password\"><br>"
-"<INPUT type=\"submit\" value=\"Send\"> <INPUT type=\"reset\">"
-"</P>"
-"</FORM>"
-"</body>";
 
 
 //---------Tasks------------//
@@ -267,29 +245,33 @@ void taskWiFiDisable(){
     }
   } 
   
-//----------handle root-----------//  
-void handleRoot(){
-    if(server.hasArg("ssid") && server.hasArg("Password")){
-        handleSubmit();
-      }else{
-           server.send(200,"text/html",HTML_PAGE);
-        }
+//****************************HANDLE ROOT***************************//
+
+void handleRoot() {
+   if (server.hasArg("ssid")&& server.hasArg("password") ) {//If all form fields contain data call handelSubmit()
+    handleSubmit();
   }
+  else {//Redisplay the form
+      File  file =SPIFFS.open("/webform.html", "r");
+      server.streamFile(file,"text/html");
+      file.close();
+   }
+}
 
-void handleSubmit(){
+//**************************SUBMIT RESPONSE**************************//
+void handleSubmit(){//dispaly values and write to memmory
+  String response="<p>The ssid is ";
+ response += server.arg("ssid");
+ response +="<br>";
+ response +="And the password is ";
+ response +=server.arg("password");
+ response +="</P><BR>";
+ response +="<H2><a href=\"/\">go home</a></H2><br>";
 
-    String response="<p>The ssid is ";
-    response += server.arg("ssid");
-    response +="<br>";
-    response +="And the password is ";
-    response +=server.arg("Password");
-    response +="</P><BR>";
-    response +="<H2><a href=\"/\">go home</a></H2><br>";
-
-    server.send(200,"text/html",response);
-
-    ROMwrite(String(server.arg("ssid")), String(server.arg("Password")));
-  }
+ server.send(200, "text/html", response);
+ //calling function that writes data to memory 
+ ROMwrite(String(server.arg("ssid")),String(server.arg("password")));
+}
 
 //----------Handle Not Found-----------//  
  void onHandleNotFound(){
