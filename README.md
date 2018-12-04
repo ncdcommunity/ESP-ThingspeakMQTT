@@ -63,7 +63,7 @@ Before proceding to our mesh we need to save the user credentials. For this purp
  
  - These credential will be saved in EEPROM
  
-    ![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture8.PNG "Local Wifi Connection")
+    ![alt text](https://github.com/ncdcommunity/ESP-ThingspeakMQTT/blob/master/WebPage.png "Local Wifi Connection")
  
  
  - After 60 sec Device will automaticaly disconnect from AP 
@@ -73,17 +73,17 @@ Before proceding to our mesh we need to save the user credentials. For this purp
 
 ## Profile
 
-![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture1.PNG "Task1 - Reading values from SHT25")
+![alt text](https://github.com/ncdcommunity/ESP-ThingspeakMQTT/blob/master/I2CReadings.PNG "Task1 - Reading values from SHT25")
 
-![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture2.PNG "Task2 - Publishing values to ThingSpeak")
+![alt text](https://github.com/ncdcommunity/ESP-ThingspeakMQTT/blob/master/IFTTTEmailNotification.PNG "Task2 - Publishing values to ThingSpeak")
 
-![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture3.PNG "ThingSpeak TempC graph")
+![alt text](https://github.com/ncdcommunity/ESP-ThingspeakMQTT/blob/master/Publish.PNG "ThingSpeak TempC graph")
 
-![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture4.PNG "ThingSpeak TempF graph")
+![alt text](https://github.com/ncdcommunity/ESP-ThingspeakMQTT/blob/master/TempCGraph.PNG "ThingSpeak TempF graph")
 
-![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture6.PNG "ThingSpeak Humidity graph")
+![alt text](https://github.com/ncdcommunity/ESP-ThingspeakMQTT/blob/master/TempFGraph.PNG "ThingSpeak Humidity graph")
 
-![alt text](https://github.com/vbshightime/ESP-ThingspeakMQTT/blob/master/Capture9.PNG "IFTTT email Notification")
+![alt text](https://github.com/ncdcommunity/ESP-ThingspeakMQTT/blob/master/humidityGraph.PNG "IFTTT email Notification")
 
 
 ## Limitations
