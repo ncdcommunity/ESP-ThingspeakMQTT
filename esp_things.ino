@@ -1,3 +1,4 @@
+//header iles for scheduling tasks
 #define _TASK_TIMEOUT
 #include <TaskScheduler.h>
 #include <PubSubClient.h>
@@ -17,13 +18,13 @@ IPAddress ap_subnet(255,255,255,0);
 
 //--------- ThingSpeak MQTT parameters------------//
 const char* mqtt_server = "mqtt.thingspeak.com";
-char mqttUserName[] = "MQTTTempDemo";
-char mqttPass[] = " KV8UT3HPYLHPPFY8";
+char mqttUserName[] = "MQTT User Name";
+char mqttPass[] = " MQTT API Key";
 
 //--------- ThingSpeak Channel parameters------------//
-const char writeAPIKey[] = "WHH1575WPZX5YHT9";
+const char writeAPIKey[] = "Your Write API Key";
 static long channelID = 627641;
-const char readAPIKey[] = "MEAMZZ9EMFE8LQWH";
+const char readAPIKey[] = "Your Read API Key";
 
 WiFiClient wifiClient;
  
@@ -57,8 +58,10 @@ unsigned long mqttInterval = 2000;
 
 ESP8266WebServer server(80);
 
+//class object for publishing and subscribing to mqtt broker
 PubSubClient mqttCli;
 
+//Class objct for Task Scheduler
 Scheduler ts;
 
 //---------prototype for task callback------------//
@@ -79,10 +82,10 @@ void setup() {
 
 Serial.begin(115200);
 EEPROM.begin(512);
+SPIFFS.begin(); 
 
 while(!Serial);
 
-//ROMClear();
 Serial.print("Configuring access point...");
 WiFi.softAPConfig(ap_local_IP,ap_gateway,ap_subnet);
 Serial.print("Setting up User Credentials");
@@ -109,7 +112,7 @@ Wire.begin(2,14);
 
 //---------loop function------------//
 void loop() {
-  // put your main code here, to run repeatedly:
+  // tasks are executed using execute() method
   ts.execute();
 }
 
@@ -119,6 +122,7 @@ void taskI2CCallback(){
   Serial.print("timeout for this task: \t");
   Serial.println(tI2C.getTimeout());
     unsigned int data[2];
+ 
   // Start I2C transmission
   Wire.beginTransmission(Addr);
   // Send humidity measurement command, NO HOLD master
@@ -251,9 +255,12 @@ void handleRoot() {
    if (server.hasArg("ssid")&& server.hasArg("password") ) {//If all form fields contain data call handelSubmit()
     handleSubmit();
   }
-  else {//Redisplay the form
+  else {
+      //Redisplay the form
+     //read the file contained in spiffs
       File  file =SPIFFS.open("/webform.html", "r");
       server.streamFile(file,"text/html");
+      //don't forget to close the file
       file.close();
    }
 }
@@ -299,7 +306,8 @@ void ROMwrite(String s, String p){
 
 void write_EEPROM(String x,int pos){
   for(int n=pos;n<x.length()+pos;n++){
-     EEPROM.write(n,x[n-pos]);
+  //write the ssid and password fetched from webpage to EEPROM
+   EEPROM.write(n,x[n-pos]);
   }
 }
 
@@ -341,13 +349,15 @@ void reconnectMQTT(){
         int subTopicLength = subTopic.length()+1;
         char subTopicBuffer[subTopicLength];
         subTopic.toCharArray(subTopicBuffer,subTopicLength);
-
+        
         String pubMessage = "status=MQTTPUBLISH";
         String pubTopic =String("channels/"+String(channelID)+"/publish/"+String(writeAPIKey));
         int pubTopicLength = pubTopic.length()+1;
         char pubTopicBuffer[pubTopicLength];
         pubTopic.toCharArray(pubTopicBuffer,pubTopicLength);
+        //Publish to MQTT Broker 
         Serial.println(mqttCli.publish(pubTopicBuffer, pubMessage.c_str()) ? "Published" : "NotPublished");
+        //Subscribe to MQTT Broker
         Serial.println(mqttCli.subscribe(subTopicBuffer) ? "Subscribed" : "Unsbscribed"); 
        }else{
            Serial.print("failed, rc=");
@@ -357,24 +367,12 @@ void reconnectMQTT(){
     }
   }
 
-//void callback(char* topic, byte* payload, unsigned int length) {
-//  Serial.print("Message arrived [");
-//  Serial.print(topic);
-//  Serial.print("] ");
-//  for (int i = 0; i < length; i++) {
-//    Serial.print((char)payload[i]);
-//  }
-//  
-//  Serial.println();
-//  
-//   
-//}
-
 
 String read_string(int l, int p){
   String temp;
   for (int n = p; n < l+p; ++n)
     {
+   // read the saved password from EEPROM
      if(char(EEPROM.read(n))!=';'){
      
        temp += String(char(EEPROM.read(n)));
@@ -383,7 +381,7 @@ String read_string(int l, int p){
   return temp;
 }
 
-
+//helper method to clear EEPROM
 void ROMClear(){
    for(int i = 0;i<512; i++){
     EEPROM.write(i,0);
