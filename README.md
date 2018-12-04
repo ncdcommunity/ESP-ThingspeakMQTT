@@ -1,4 +1,4 @@
-# SHT 31 MQTT  ThingSpeak Tutorial
+# SHT 25 MQTT  ThingSpeak Tutorial
 
 It's an ESP8266 project to measure Temperature and Humidity using SHT31 and Adafruit Huzzah ESP8266. It provides us Real Time    Temperature and Humidity data and hourly analytics. The data is sent using MQTT thing speak API and later we are providing an email notification to the user whenever temperature reaches assigned threshold using IFTTT protocol
 
