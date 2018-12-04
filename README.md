@@ -35,7 +35,19 @@ It's an ESP8266 project to measure Temperature and Humidity using SHT31 and Adaf
   - When the Task2 reaches its time out Task 1 is enabled again and Task2 is disabled. here again we are getting the updated value and       the process goes on   
   - when no callback is called or the device is idle it goes to Light Sleep thus saving power.
   - We are also using IFTTT protocol to provide user with email notifications on weather updates
- 
+  
+### SPIFFS
+  Serial Peripheral Interface Flash File System, or SPIFFS for short. It's a light-weight file system for microcontrollers with an SPI flash chip. The on-board flash chip of the ESP8266 has plenty of space for your webpages, especially if you have the 1MB, 2MB or 4MB version. We have also stored our webpage in Flash System. There are few steps we need to follow to upload data to spiffs
+  
+  - Download the tool: https://github.com/esp8266/arduino-esp8266fs-plugin/releases/download/0.1.3/ESP8266FS-0.1.3.zip.
+  - In your Arduino sketchbook directory, create tools directory if it doesn't exist yet
+  - Unpack the tool into tools directory (the path will look like <home_dir>/Arduino/tools/ESP8266FS/tool/esp8266fs.jar)
+  - Restart Arduino IDE
+  - Open a sketch (or create a new one and save it)
+  - Go to sketch directory (choose Sketch > Show Sketch Folder)
+  - Create a directory named data and any files you want in the file system there. We have uploaded our html page with name         webform.html
+  - Make sure you have selected a board, port, and closed Serial Monitor
+  - Select Tools > ESP8266 Sketch Data Upload. This should start uploading the files into ESP8266 flash file system. When done,      IDE status bar will display SPIFFS Image Uploaded message.
 
 ## Usage
 
